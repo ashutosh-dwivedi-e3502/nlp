@@ -70,7 +70,7 @@ def download_week2_resources(force=False):
     )
 
 
-def download_week3_resources(force=False):
+def download_week3_resources(force=False, download_vectors=True):
     sequential_downloader(
         "week3",
         [
@@ -82,9 +82,12 @@ def download_week3_resources(force=False):
         "data",
         force=force
     )
-    print("Downloading GoogleNews-vectors-negative300.bin.gz (1.5G) for you, it will take a while...")
-    download_file("https://s3.amazonaws.com/dl4j-distribution/GoogleNews-vectors-negative300.bin.gz",
-                  "GoogleNews-vectors-negative300.bin.gz")
+    if download_vectors:
+        print("Downloading GoogleNews-vectors-negative300.bin.gz (1.5G) for you, it will take a while...")
+        download_file("https://s3.amazonaws.com/dl4j-distribution/GoogleNews-vectors-negative300.bin.gz",
+                      "GoogleNews-vectors-negative300.bin.gz")
+    else:
+        print('Not downloading google word vectors. make sure they exist')
 
 
 def download_project_resources(force=False):
